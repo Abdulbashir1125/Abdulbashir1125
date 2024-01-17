@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+<style>
+  p{
+    margin: 0;
+  }
+  #pin{
+    color:firebrick;
+    font-size:40px;
+    margin-bottom: 10px;
+  }
+  .pied{
+    display: flex;
+  }
+  .pied .pi{
+    display: none;
+  }
+
+  .pied .pap{
+    display: initial;
+    color: green;
+  animation: wow 2s ease   forwards;
+  }
+  @keyframes wow{
+    0%{
+      transform: translateX(50%);
+    }
+    20%{
+      transform: translate(0%);
+    }
+
+  }
+
+</style>
+</head>
+<body>
+  
+  <h1>Random Password Generator</h1>
+  <button id="gen">Generate</button>
+  <p id="pin">output</p>
+
+  <div class="pied">
+    <div>  <button id="copy">copy</button></div>
+    <div class="pi" id="p1"><p >!copied</p></div>
+  </div>
+
+  
+
+
+  <script>
+//random letter
+let gen = document.getElementById('gen')
+    const letters= ['a','b','c','d','e','f','g','h','i','j'];
+function rnd(){
+  let rand = letters.length
+   let r =Math.floor(Math.random()*rand);
+   return r
+}
+let rrr = letters[rnd()]
+
+//random number
+const number= [1,2,3,4,5,6];
+function rd(){
+  let rand = number.length
+   let r =Math.floor(Math.random()*rand);
+   return r
+}
+let lett = number[rd()]
+
+
+//random character
+
+const cha= ['+','.','!','#','@','&'];
+function rn(){
+  let rand = cha.length
+   let r =Math.floor(Math.random()*rand);
+   return r
+}
+let chars = cha[rn()]
+
+
+let final ='';
+
+function go(){
+let rand = Math.floor(Math.random()*4);
+let man=''
+// console.log(rand)
+if(rand==2){
+ 
+  man+=cha[rn()];
+  man+= letters[rnd()];
+  man+= letters[rnd()];
+  man+= letters[rnd()];
+  man+= letters[rnd()];
+  man+=number[rd()];
+  console.log(man,'its 2')
+}else if(rand==1){
+  man+=cha[rn()];
+  man+= letters[rnd()];
+  man+=cha[rn()];
+  man+=number[rd()];
+  man+= letters[rnd()];
+  man+=number[rd()];
+  console.log(man,'its 1')
+}else{
+  man+=number[rd()];
+  man+= letters[rnd()];
+  man+=cha[rn()];
+  man+=number[rd()];
+  man+= letters[rnd()];
+  man+= letters[rnd()];
+
+  console.log(man,'else')
+}
+
+document.getElementById('pin').innerText = man;
+}
+
+gen.onclick=()=>{
+  go()
+}
+
+
+let cop = document.getElementById('copy')
+cop.onclick=()=>{
+ let copied = document.getElementById('pin').innerText;
+ let doc = document.getElementById('p1');
+ doc.classList.add('pap')
+ console.log(copied)
+
+ setTimeout(()=>{
+doc.classList.remove('pap')
+ },1500)
+
+}
+
+
+
+
+  </script>
+</body>
+</html>
